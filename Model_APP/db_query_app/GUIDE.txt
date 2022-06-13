@@ -1,0 +1,57 @@
+https://docs.djangoproject.com/en/4.0/topics/db/queries/
+
+
+# Saving ForeignKey and ManyToManyField fields¶
+from db_query_app.models import Blog, Author, Entry
+entry = Entry.objects.get(pk=1)
+cheese_blog = Blog.objects.get(name="Ma-aruf")
+entry.blog = cheese_blog
+entry.save()
+
+# Updating ManyToManyField
+joe = Author.objects.create(name="joe")
+entry.authors.add(joe)
+
+# adding multiple records to a ManyToManyField in one go include multiple arguments
+>> john = Author.objects.create(name="John")
+>>> paul = Author.objects.create(name="Paul")
+>>> george = Author.objects.create(name="George")
+>>> ringo = Author.objects.create(name="Ringo")
+>>> entry.authors.add(john, paul, george, ringo)
+
+# Lookups that span relationships
+This example retrieves all Entry objects with a Blog whose name is 'Beatles Blog':
+Entry.objects.filter(blog__name='Beatles Blog')
+
+This example retrieves all Blog objects which have at least one Entry whose headline contains 'Lennon'
+>>> Blog.objects.filter(entry__headline__contains='Lennon')
+
+
+Escaping percent signs and underscores in LIKE statements¶
+The field lookups that equate to LIKE SQL statements 
+(iexact, contains, icontains, startswith, istartswith, endswith and iendswith) 
+will automatically escape the two special characters used in LIKE statements – 
+the percent sign and the underscore. (In a LIKE statement, the percent sign signifies a 
+multiple-character wildcard and the underscore signifies a single-character wildcard.)
+
+This means things should work intuitively, so the abstraction doesn’t leak. For example, to retrieve all the 
+entries that contain a percent sign, use the percent sign as any other character:
+
+Django takes care of the quoting for you; the resulting SQL will look something like this:
+
+
+Complex lookups with Q objects¶
+Keyword argument queries – in filter(), etc. – are “AND”ed together. 
+If you need to execute more complex queries (for example, queries with OR statements), 
+you can use Q objects.
+
+A Q object (django.db.models.Q) is an object used to encapsulate a collection of 
+keyword arguments. These keyword arguments are specified as in “Field lookups” above.
+
+For example, this Q object encapsulates a single LIKE query:
+from django.db.models import Q
+Q(question__startswith='What')
+
+Q objects can be combined using the & and | operators. When an operator is used on two Q objects, it yields a new Q object.
+For example, this statement yields a single Q object that represents the “OR” of two "question__startswith" queries:
+Q(question__startswith='Who') | Q(question__startswith='What')

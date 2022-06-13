@@ -1,0 +1,15 @@
+{% extends 'base/home.html' %}
+{% block content %}
+<div>
+    <h1>Tasks</h1>
+    {% for task in tasks %}
+    <ul>
+        <a href="{% url 'upsert' task.id %}">{{task.id}}</a>
+        <li>{{task.name}}</li>
+        <li>{{task.is_complete}}</li>
+        <li>{{task.date_added}}</li>
+    </ul>
+    {% endfor %}
+</div>
+<a href="{% url 'upsert' %}">Create task</a>
+{% endblock content %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+{% include 'navbar.html'%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href='{% static "css/styles.css" %}''>
+</head>
+
+<body>
+<h1>Members</h1>
+<table border="1">
+{% for x in members %}
+<tr>
+    <td><a href="{% url 'members:update_view' x.id %}">{{x.id}}</a></td>
+    <td>{{x.firstname}}</td>
+    <td>{{x.lastname}}</td>
+    <td><a href="{% url 'members:delete_member' x.id %}">Delete</a></td>
+</tr>
+{% endfor %}
+</table>
+
+<p><a href="{% url 'members:add_view' %}">Add a Member</a></p>
+</body>
+</html>

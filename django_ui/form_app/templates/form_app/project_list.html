@@ -1,0 +1,23 @@
+<a href="{% url 'form_app:create_project'%}">ADD</a>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for data in projects %}
+        <tr>
+            <!-- <td><a href="{% url 'form_app:update_project' data.id %}"></a></td> -->
+            <td>{{data.title}}</td>
+            <td>{{data.description}}</td>
+            <td><a href="{% url 'form_app:update_project' data.id %}">Update</a></td>
+            <td><a href="{% url 'form_app:delete_project' data.id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

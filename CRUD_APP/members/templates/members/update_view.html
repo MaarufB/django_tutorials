@@ -1,0 +1,14 @@
+<h1>Update member</h1>
+
+<form action="{% url 'members:update_member' members.id %}" method="POST">
+{% csrf_token %}
+First Name:<br>
+<input name="first" value="{{ members.firstname }}">
+<br><br>
+Last Name:<br>
+<input name="last" value="{{ members.lastname }}">
+<img src="{{members.images_file.url}}">
+<p>{{members.images_file.url}}</p>
+<br><br>
+<input type="submit" value="Submit">
+</form>

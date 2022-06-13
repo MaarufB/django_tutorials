@@ -1,0 +1,11 @@
+<h1>Add member</h1>
+
+<form method="POST", action="{% url 'members:add_member' %}">
+    {% csrf_token %}
+    <input name="first">
+    <br>
+    <input name="last">
+    <br>
+
+    <input type="submit" value="Submit">
+</form>

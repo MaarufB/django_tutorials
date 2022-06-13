@@ -1,0 +1,15 @@
+http://ccbv.co.uk/projects/Django/4.0/django.views.generic.base/View/
+
+View base 
+
+Attributes *
+    http_method_names = [
+        'get', 
+        'post', 
+        'put', 
+        'patch', 
+        'delete', 
+        'head', 
+        'options', 
+        'trace'
+        ]	

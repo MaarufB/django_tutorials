@@ -1,0 +1,46 @@
+<!-- <form action="{% url 'form_app:contact_me'%}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTACT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <form class="form form-control" method="post" action="{% url 'form_app:contact_me'%}">
+            {{ form.non_field_errors }}
+            {% csrf_token %}
+            <div class="fieldWrapper">
+                {{ form.subject.errors }}
+                <label for="{{ form.subject.id_for_label }}">Email subject:</label>
+                {{ form.subject }}
+            </div>
+            <div class="fieldWrapper">
+                {{ form.message.errors }}
+                <label for="{{ form.message.id_for_label }}">Your message:</label>
+                {{ form.message }}
+            </div>
+            <div class="fieldWrapper">
+                {{ form.sender.errors }}
+                <label for="{{ form.sender.id_for_label }}">Your email address:</label>
+                {{ form.sender }}
+            </div>
+            <div class="fieldWrapper">
+                {{ form.cc_myself.errors }}
+                <label for="{{ form.cc_myself.id_for_label }}">CC yourself?</label>
+                {{ form.cc_myself }}
+            </div>
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

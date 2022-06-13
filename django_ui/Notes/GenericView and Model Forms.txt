@@ -1,0 +1,42 @@
+# forms.Form
+	- references: # TODO Research it
+		* The Forms API https://docs.djangoproject.com/en/4.0/ref/forms/api/
+		* Form fields https://docs.djangoproject.com/en/4.0/ref/forms/fields/
+		* Form fileds and validation https://docs.djangoproject.com/en/4.0/ref/forms/validation/
+
+	- Forms in HTML allows you to make a control of the inputs. For more complex such as pops-up date time picker or allow the user
+		to move a slider or manipulate controls will typically use JavaScript and CSS as well as HTML form <input> elements to
+		achieve these effects.
+
+	- A Form must specify two things:
+		* where: the URL to which the data corresponding to the user’s input should be returned
+		* how: the HTTP method the data should be returned by
+
+	- GET and POST in FORM
+		* GET and POST are the only HTTP methods to use when dealing with forms.
+		* Django’s login form is returned using the POST method, in which the browser bundles up the form data, encodes it for transmission, sends it to the server, and then receives back its response.
+		* GET, by contrast, bundles the submitted data into a string, and uses this to compose a URL. The URL contains the address where the data must be sent, as well as the data keys and values.
+			You can see this in action if you do a search in the Django documentation, which will produce a URL of the form https://docs.djangoproject.com/search/?q=forms&release=1.
+		* Any request that could be used to change the state of the system - for example, a request that makes changes in the database - should use POST. GET should be used only for requests that do not affect the state of the system.
+		* A web application that uses GET requests for admin forms is a security risk: it can be easy for an attacker to mimic a form’s request to gain access to sensitive parts of the system. 
+		* POST, coupled with other protections like Django’s CSRF protection offers more control over access.
+		* On the other hand, GET is suitable for things like a web search form, because the URLs that represent a GET request can easily be bookmarked, shared, or resubmitted.
+	- A form’s fields are themselves classes; they manage form data and perform validation when a form is submitted. A DateField and a FileField handle very different kinds of data and have to do different things with it.
+
+	- Working with form templates
+		* All we need to do is get the form into template is to place the form instance into the template context. So if your form is called form in the context, {{ form }} will render its <label> and <input> elements appropriately.
+
+	- Additional form template furniture
+		* Don’t forget that a form’s output does not include the surrounding <form> tags, or the form’s submit control. You will have to provide these yourself.
+
+	- There are other output options though for the <label>/<input> pairs:
+		* {{ form.as_table }} will render them as table cells wrapped in <tr> tags
+		* {{ form.as_p }} will render them wrapped in <p> tags
+		* {{ form.as_ul }} will render them wrapped in <li> tags
+		* NOTE: Note that you’ll have to provide the surrounding <table> or <ul> elements yourself.
+	- 
+
+Difference between forms.Form and forms.ModelForm
+
+# ModelForm
+	- If you’re building a database-driven app, chances are you’ll have forms that map closely to Django models. For instance, you might have a BlogComment model, and you want to create a form that lets people submit comments. In this case, it would be redundant to define the field types in your form, because you’ve already defined the fields in your model.

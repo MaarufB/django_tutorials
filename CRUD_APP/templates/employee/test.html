@@ -1,0 +1,8 @@
+{% extends 'employee/main.html' %}
+{% block content%}
+<ul>
+    {% for item in employees%}
+    <li>{{item}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

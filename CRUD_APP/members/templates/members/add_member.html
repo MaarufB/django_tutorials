@@ -1,0 +1,44 @@
+
+{% extends 'main.html' %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Add member</h1>
+    <div class="containter">
+        <form class="form-control m-auto" style="width: 1000px;" method="POST", action="{% url 'members:add_member' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- <input name="first">
+            <br>
+            <input name="last">
+            <br> -->
+            <div class="container-fluid">
+                <div class="mb-3 row pt-3">
+                    <label class="col-sm-2 col-form-label">First Name</label>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control form-control-sm" name="first">
+                    </div>
+                </div>
+                <div class="mb-3 row pt-3">
+                    <label class="col-sm-2 col-form-label">Last Name</label>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control form-control-sm" name="last">
+                    </div>
+                </div>
+                <div class="mb-3 row pt-3">
+                    <label for="formFile" class="col-sm-2 col-form-label">Input Image</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="file" id="formFile" name="image">
+                    </div>
+                </div>
+                <div class="mb-3 row pt-3">
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-primary mb-3" style="width: 100px;">Add</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+
+

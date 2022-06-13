@@ -1,0 +1,22 @@
+<h1>Create Project</h1>
+<br>
+<form method="POST", action="">
+    {% csrf_token %}
+    {% for field in form %}
+    <div>
+        <label for="">{{field.label}}</label>
+        {{field}}
+    </div>
+    {% endfor %}
+    
+    <input type="submit", value="Submit">
+</form>
+
+<!-- <div>
+    {{form.title.label}}
+    {{form.title}}
+</div>
+<div>
+    {{form.description.label}}
+    {{form.description}}
+</div> -->
