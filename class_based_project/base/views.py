@@ -41,8 +41,6 @@ class TaskUpsertView(View):
 
     def get(self, request, *args, **kwargs):
         form = self.form_class(initial=self.initial)
-        print(f'kwargs: {kwargs}')
-        print(f'args: {args}')
         if 'id' in kwargs:
             task = Task.objects.get(id=kwargs['id'])
             form = self.form_class(instance=task)
@@ -79,8 +77,6 @@ class ProtectedView(TemplateView):
     #     return super().dispatch(*args, **kwargs)
 
 
-
-
 # This part here is the generic views
 class PublisherListView(ListView):
     # you need to specify the model name here
@@ -101,7 +97,6 @@ class PublisherDetailView(DetailView):
         # Call The base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the books
-        print(f"This is publisher {kwargs}")
         context['book_list'] = Book.objects.all()
         
         return context
